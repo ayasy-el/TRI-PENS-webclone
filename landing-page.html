@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Program Studi Sarjana Terapan Teknologi Rekayasa Internet</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .header {
+        background-color: #003366;
+        color: white;
+        padding: 10px 0;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+      }
+
+      .main-content {
+        padding: 20px;
+      }
+
+      .video-container {
+        background-color: #333;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+      }
+
+      .profile-section {
+        position: relative;
+        height: 400px;
+        margin-top: 20px;
+        overflow: hidden;
+      }
+
+      .profile-image {
+        width: 100%;
+        height: 100%;
+        background-image: url("/Picture2.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .profile-overlay {
+        position: absolute;
+        top: 0;
+        left: 300px;
+        width: 500px;
+        height: 100%;
+        background-color: rgba(0, 51, 102, 0.7);
+        color: white;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .profile-content {
+        max-width: 100%;
+      }
+
+      .icon-section {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        background-color: #003366;
+        padding: 80px 0;
+        flex-wrap: wrap;
+      }
+
+      .icon-item {
+        text-align: center;
+        color: white;
+        flex: 1 1 30%;
+        margin: 10px;
+      }
+
+      .news-section {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .news-section h2 {
+        font-size: 28px;
+        color: #333;
+        max-width: 800px;
+        margin-bottom: 10px;
+      }
+
+      .news-meta {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      .news-content {
+        font-size: 16px;
+        color: #444;
+        max-width: 800px;
+        margin-bottom: 20px;
+      }
+
+      .news-navigation {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .news-navigation span {
+        width: 10px;
+        height: 10px;
+        background-color: #ccc;
+        border-radius: 50%;
+        margin: 0 5px;
+        cursor: pointer;
+      }
+
+      .news-navigation span.active {
+        background-color: #333;
+      }
+
+      .see-all-news {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #fff;
+        color: #0088cc;
+        text-decoration: none;
+        border: 1px solid #0088cc;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .see-all-news:hover {
+        background-color: #0088cc;
+        color: #fff;
+      }
+
+      button {
+        background-color: #ffd700;
+        color: #003366;
+        border: none;
+        padding: 10px 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #ffc000;
+      }
+
+      .profile-text {
+        padding: 40px 20px;
+        margin-top: 20px;
+        position: relative;
+        overflow: hidden;
+        background-image: url("bacground1.svg");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .profile-text-content {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .profile-text h2 {
+        color: #003366;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .profile-text p {
+        color: #333;
+        line-height: 1.6;
+        padding-right: 280px;
+        padding-left: 280px;
+      }
+
+      .yellow-line {
+        height: 3px;
+        background-color: #ffd700;
+        width: 50%;
+        margin: 10px 0;
+      }
+
+      .partners {
+        background-color: #ffd700;
+        padding: 20px;
+        margin-top: 20px;
+        text-align: center;
+        background-image: url("balik.png");
+        background-size: cover;
+        background-blend-mode: overlay;
+        min-height: 400px;
+      }
+
+      .partners-items {
+        padding: 27px 0;
+        display: flex;
+        gap: 50px;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+        flex-wrap: wrap;
+      }
+
+      .footer {
+        background-color: #003366;
+        color: white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
+      /* Media Query untuk layar kecil */
+      @media (max-width: 480px) {
+        .nav {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .nav-links {
+          display: flex;
+          flex-direction: column;
+          margin-top: 10px;
+        }
+
+        .profile-section {
+          height: auto;
+        }
+
+        .profile-overlay {
+          position: static;
+          width: 100%;
+        }
+
+        .icon-section {
+          flex-direction: column;
+          padding: 40px 0;
+        }
+
+        .icon-item {
+          flex-basis: 100%;
+          margin: 10px 0;
+        }
+
+        .news-section h2 {
+          font-size: 22px;
+        }
+
+        .news-content {
+          font-size: 14px;
+        }
+
+        .partners-items {
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+
+      /* Media Query untuk layar menengah (tablet) */
+      @media (min-width: 481px) and (max-width: 768px) {
+        .profile-overlay {
+          width: 100%;
+          position: static;
+        }
+
+        .news-section h2 {
+          font-size: 24px;
+        }
+
+        .partners-items {
+          gap: 30px;
+        }
+
+        .icon-section {
+          flex-direction: row;
+          flex-wrap: wrap;
+          padding: 60px 0;
+        }
+
+        .icon-item {
+          flex-basis: 45%;
+        }
+      }
+
+      /* Media Query untuk layar besar (desktop kecil) */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .profile-overlay {
+          width: 100%;
+        }
+
+        .news-section h2 {
+          font-size: 26px;
+        }
+
+        .partners-items {
+          gap: 40px;
+        }
+
+        .icon-section {
+          padding: 80px 0;
+        }
+
+        .icon-item {
+          flex-basis: 30%;
+        }
+      }
+
+      /* Media Query untuk layar yang lebih besar */
+      @media (min-width: 1025px) {
+        .profile-overlay {
+          left: 300px;
+          width: 500px;
+        }
+
+        .partners-items {
+          gap: 50px;
+        }
+
+        .icon-section {
+          padding: 100px 0;
+        }
+
+        .icon-item {
+          flex-basis: 30%;
+        }
+      }
+      @media (max-width: 480px) {
+        .profile-text {
+          background-size: cover;
+          padding: 20px 10px;
+        }
+
+        .profile-text p {
+          padding-right: 10px;
+          padding-left: 10px;
+        }
+      }
+
+      @media (min-width: 481px) and (max-width: 768px) {
+        .profile-text {
+          background-size: cover;
+          padding: 30px 20px;
+        }
+
+        .profile-text p {
+          padding-right: 30px;
+          padding-left: 30px;
+        }
+      }
+
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .profile-text {
+          padding: 40px 50px;
+          background-size: cover;
+        }
+
+        .profile-text p {
+          padding-right: 150px;
+          padding-left: 150px;
+        }
+      }
+
+      @media (min-width: 1025px) {
+        .profile-text {
+          background-size: cover;
+          padding: 40px 20px;
+        }
+
+        .profile-text p {
+          padding-right: 280px;
+          padding-left: 280px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <div class="logo">
+          <img src="tri_header.png" alt="Prodi Teknologi Rekayasa Internet" id="logo" height="80" />
+        </div>
+        <div class="nav-links">
+          <a href="#">Home</a>
+          <a href="#">Profil Prodi</a>
+          <a href="#">Akademik</a>
+          <a href="#">Fasilitas</a>
+          <a href="#">Mahasiswa</a>
+          <a href="#">Kegiatan Prodi</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <div class="video-container">Video Player Placeholder</div>
+
+      <section class="profile-section">
+        <div class="profile-image"></div>
+        <div class="profile-overlay">
+          <div class="profile-content">
+            <h2>Profil Program Studi</h2>
+            <p>
+              Sarjana Terapan Teknologi Rekayasa Internet akan mendapatkan materi teori dan praktik
+              tentang elektronika umum, pengembangan aplikasi website, network security, cloud
+              computing, mobile computing, dan Internet of Things (IoT).
+            </p>
+            <button>READ MORE</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="news-section">
+        <h2>
+          Mahasiswa Prodi Teknologi Rekayasa Internet PENS Sabet Juara 2 Kategori Hackathon Tingkat
+          Nasional
+        </h2>
+        <div class="news-meta">by tripens | July 7, 2024 | Uncategorized | 0 Comments</div>
+        <div class="news-content">
+          Surabaya, tri.pens.ac.id- Politeknik Elektronika berhasil meraih Juara Umum pada Kompetisi
+          Mahasiswa Informatika Politeknik Nasional (KMIPN) VI 2024 di Jakarta. Hal ini merupakan
+          keenam kalinya bagi PENS menjadi juara umum secara berturut-turut. Ajang KMIPN tahun...
+        </div>
+        <div class="news-navigation">
+          <span class="active"></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <a href="#" class="see-all-news">Lihat Semua Berita</a>
+      </section>
+
+      <section class="icon-section">
+        <div class="icon-item">
+          <img src="/MENDALI.png" height="150" alt="Prestasi" />
+          <p></p>
+          <button>Klik di sini</button>
+        </div>
+        <div class="icon-item">
+          <img src="/KURIKUILUM.png" height="150" alt="Kurikulum" />
+          <p></p>
+          <button>Klik di sini</button>
+        </div>
+        <div class="icon-item">
+          <img src="/KERJASAMA.png" height="150" alt="Kerjasama" />
+          <p></p>
+          <button>Klik di sini</button>
+        </div>
+      </section>
+
+      <section class="profile-text">
+        <h2>PROFIL TEKNOLOGI REKAYASA INTERNET</h2>
+        <div class="yellow-line"></div>
+        <p>
+          Sarjana Terapan Teknologi Rekayasa Internet akan mendapatkan materi teori dan praktek
+          tentang elektronika umum, pengembangan aplikasi website, network security, cloud
+          computing, mobile computing, dan Internet of Things (IoT).
+        </p>
+        <p>
+          Dengan dosen yang berpengalaman dalam akademik dan praktisi, maka lulusan akan memiliki
+          kompetensi antara lain Internet Developer, Internet Network Engineer, Network Security
+          Engineer, Cloud Computing Engineer, Mobile dan IoT Engineer, dan masih banyak lainnya.
+        </p>
+      </section>
+
+      <section class="partners">
+        <h3>Kerjasama dan Sertifikasi Kompetensi</h3>
+        <div class="partners-items">
+          <img src="amazon.png" alt="Amazon Academy" height="82" />
+          <img src="huawei.png" alt="Huawei Academy" height="82" />
+          <img src="cisco.png" alt="Cisco Academy" height="82" />
+          <img src="ceh.png" alt="CEH" height="142" />
+          <img src="bnsp.png" alt="BNSP" height="82" />
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <h4>TENTANG KAMI</h4>
+        <p>Visi Misi</p>
+        <p>Kurikulum</p>
+        <p>Staff</p>
+        <p>Penelitian</p>
+      </div>
+      <div>
+        <h4>PRANALA LUAR</h4>
+        <p>Kemendikbud</p>
+        <p>Politeknik Elektronika Negeri Surabaya</p>
+      </div>
+      <div>
+        <h4>FASILITAS</h4>
+        <p>Lab. Jaringan dan Internet of Things</p>
+        <p>Lab. Web Development dan Apps</p>
+        <p>Lab. Network Security</p>
+        <p>Lab. Mobile Comm dan Sensor</p>
+        <p>Lab. Cloud Computing</p>
+        <p>Ruang Tugas Akhir</p>
+      </div>
+    </footer>
+  </body>
+</html>
